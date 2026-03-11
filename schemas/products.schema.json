@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openShopProtocol.dev/schemas/products.json",
+  "title": "ProductListing",
+  "description": "Served at /products.json — paginated list of products",
+  "type": "object",
+  "required": ["osp_version", "shop_url", "total", "products"],
+  "properties": {
+    "osp_version": { "type": "string", "const": "1" },
+    "shop_url":    { "type": "string", "format": "uri" },
+    "total":       { "type": "integer", "minimum": 0 },
+    "page":        { "type": "integer", "minimum": 1 },
+    "next_url":    { "type": "string", "format": "uri" },
+    "products": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Product" }
+    }
+  },
+  "$defs": {
+    "Product": {
+      "type": "object",
+      "required": ["id", "name", "url", "type", "price"],
+      "additionalProperties": true,
+      "properties": {
+        "id":               { "type": "string", "minLength": 1 },
+        "name":             { "type": "string", "minLength": 1, "maxLength": 200 },
+        "description":      { "type": "string", "maxLength": 1000 },
+        "long_description": { "type": "string" },
+        "url":              { "type": "string", "format": "uri" },
+        "type": {
+          "type": "string",
+          "enum": ["download", "subscription", "tool", "content", "physical", "other"]
+        },
+        "price": {
+          "type": "object",
+          "required": ["model"],
+          "properties": {
+            "model": {
+              "type": "string",
+              "enum": ["fixed", "pay_what_you_want", "free", "subscription"]
+            },
+            "amount":   { "type": "integer", "minimum": 0, "description": "Minor units (e.g. cents)" },
+            "currency": { "type": "string", "description": "ISO 4217" }
+          }
+        },
+        "license": {
+          "type": "object",
+          "properties": {
+            "spdx": { "type": "string" },
+            "name": { "type": "string" },
+            "url":  { "type": "string", "format": "uri" }
+          }
+        },
+        "cover_url":   { "type": "string", "format": "uri" },
+        "categories":  { "type": "array", "items": { "type": "string" } },
+        "tags":        { "type": "array", "items": { "type": "string" } },
+        "created_at":  { "type": "string", "format": "date-time" },
+        "updated_at":  { "type": "string", "format": "date-time" },
+        "version":     { "type": "string" },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["asset_type", "url"],
+            "properties": {
+              "asset_type": {
+                "type": "string",
+                "enum": ["screenshot", "preview", "video", "demo", "other"]
+              },
+              "url": { "type": "string", "format": "uri" },
+              "alt": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

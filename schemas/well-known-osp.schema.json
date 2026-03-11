@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openShopProtocol.dev/schemas/well-known-osp.json",
+  "title": "WellKnownOsp",
+  "description": "Served at /.well-known/osp — entry point for OSP discovery",
+  "type": "object",
+  "required": ["osp_version", "shop_url", "products_url"],
+  "additionalProperties": false,
+  "properties": {
+    "osp_version": {
+      "type": "string",
+      "const": "1",
+      "description": "OSP protocol version"
+    },
+    "shop_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Absolute URL to the shop manifest"
+    },
+    "products_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Absolute URL to the product listing"
+    }
+  }
+}

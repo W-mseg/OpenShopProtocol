@@ -1,0 +1,18 @@
+{
+  "osp_version": "1",
+  "url": "https://alice.example.com",
+  "name": "Alice's Design Shop",
+  "description": "Fonts, icons and UI kits for indie developers.",
+  "owner": "Alice Dupont",
+  "email": "alice@example.com",
+  "lang": "en",
+  "currency": "EUR",
+  "logo_url": "https://alice.example.com/logo.png",
+  "categories": ["fonts", "icons", "ui-kits"],
+  "tags": ["design", "indie"],
+  "links": {
+    "twitter": "@alicedesigns",
+    "github": "alicedesigns",
+    "website": "https://alice.example.com"
+  }
+}

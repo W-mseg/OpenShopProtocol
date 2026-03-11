@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openShopProtocol.dev/schemas/shop.json",
+  "title": "ShopManifest",
+  "description": "Served at /shop.json — describes the shop identity",
+  "type": "object",
+  "required": ["osp_version", "url", "name"],
+  "additionalProperties": true,
+  "properties": {
+    "osp_version": { "type": "string", "const": "1" },
+    "url":         { "type": "string", "format": "uri" },
+    "name":        { "type": "string", "minLength": 1, "maxLength": 120 },
+    "description": { "type": "string", "maxLength": 1000 },
+    "owner":       { "type": "string" },
+    "email":       { "type": "string", "format": "email" },
+    "lang":        { "type": "string", "description": "BCP 47 language tag, e.g. 'en', 'fr'" },
+    "currency":    { "type": "string", "description": "ISO 4217, e.g. 'EUR'" },
+    "logo_url":    { "type": "string", "format": "uri" },
+    "categories":  { "type": "array", "items": { "type": "string" } },
+    "tags":        { "type": "array", "items": { "type": "string" } },
+    "links": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "twitter":  { "type": "string" },
+        "github":   { "type": "string" },
+        "mastodon": { "type": "string" },
+        "website":  { "type": "string", "format": "uri" }
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "osp_version": "1",
+  "shop_url": "https://alice.example.com",
+  "total": 2,
+  "page": 1,
+  "products": [
+    {
+      "id": "mono-typeface",
+      "name": "Mono Typeface",
+      "description": "A clean monospace font for developers and designers.",
+      "url": "https://alice.example.com/products/mono-typeface",
+      "type": "download",
+      "price": {
+        "model": "fixed",
+        "amount": 1200,
+        "currency": "EUR"
+      },
+      "license": {
+        "spdx": "LicenseRef-Commercial",
+        "name": "Single-user commercial license",
+        "url": "https://alice.example.com/licenses/single-user"
+      },
+      "cover_url": "https://alice.example.com/assets/mono-typeface-cover.png",
+      "categories": ["fonts"],
+      "tags": ["monospace", "developer", "typeface"],
+      "version": "2.1.0",
+      "created_at": "2024-03-01T00:00:00Z",
+      "updated_at": "2025-01-15T00:00:00Z",
+      "assets": [
+        {
+          "asset_type": "screenshot",
+          "url": "https://alice.example.com/assets/mono-typeface-preview.png",
+          "alt": "Mono Typeface in use"
+        }
+      ]
+    },
+    {
+      "id": "icon-set-v3",
+      "name": "Icon Set v3",
+      "description": "500 hand-crafted SVG icons, MIT licensed.",
+      "url": "https://alice.example.com/products/icon-set-v3",
+      "type": "download",
+      "price": {
+        "model": "pay_what_you_want",
+        "amount": 0,
+        "currency": "EUR"
+      },
+      "license": {
+        "spdx": "MIT",
+        "name": "MIT License"
+      },
+      "cover_url": "https://alice.example.com/assets/icon-set-cover.png",
+      "categories": ["icons"],
+      "tags": ["svg", "icons", "open-source"],
+      "version": "3.0.0",
+      "created_at": "2025-06-01T00:00:00Z",
+      "updated_at": "2025-06-01T00:00:00Z"
+    }
+  ]
+}
