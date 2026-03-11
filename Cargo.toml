@@ -1,7 +1,7 @@
 [workspace]
 resolver = "2"
 members = [
-    "crates/protocol",
+    "crates/protocol","apps/node"
 ]
 
 # Future members:
