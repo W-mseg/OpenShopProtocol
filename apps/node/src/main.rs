@@ -3,6 +3,7 @@ mod db;
 mod error;
 mod models;
 mod routes;
+mod validation;
 
 use axum::{
     routing::{delete, get, patch, post},
@@ -43,26 +44,24 @@ async fn main() -> anyhow::Result<()> {
 
     let app = Router::new()
         // ── OSP public endpoints ──
-        .route("/.well-known/osp", get(routes::osp::well_known))
-        .route("/shop.json",       get(routes::osp::shop_manifest))
-        .route("/products.json",   get(routes::osp::products_listing))
-
+        .route("/.well-known/osp",  get(routes::osp::well_known))
+        .route("/shop.json",        get(routes::osp::shop_manifest))
+        .route("/products.json",    get(routes::osp::products_listing))
         // ── Admin API ──
-        .route("/admin/shop",           get(routes::admin::get_shop))
-        .route("/admin/shop",           patch(routes::admin::update_shop))
-        .route("/admin/products",       get(routes::admin::list_products))
-        .route("/admin/products",       post(routes::admin::create_product))
-        .route("/admin/products/:id",   delete(routes::admin::delete_product))
-
+        .route("/admin/shop",               get(routes::admin::get_shop))
+        .route("/admin/shop",               patch(routes::admin::update_shop))
+        .route("/admin/products",           get(routes::admin::list_products))
+        .route("/admin/products",           post(routes::admin::create_product))
+        .route("/admin/products/:id",       patch(routes::admin::update_product))
+        .route("/admin/products/:id",       delete(routes::admin::delete_product))
         // ── Admin UI ──
-        .route("/admin", get(serve_admin_ui))
-
+        .route("/admin",                    get(serve_admin_ui))
         .layer(cors)
         .with_state(state);
 
     let addr: SocketAddr = format!("{}:{}", config.host, config.port).parse()?;
     tracing::info!("OSP Node listening on http://{}", addr);
-    tracing::info!("Admin UI: http://{}/admin", addr);
+    tracing::info!("Admin UI → http://{}/admin", addr);
 
     let listener = tokio::net::TcpListener::bind(addr).await?;
     axum::serve(listener, app).await?;
